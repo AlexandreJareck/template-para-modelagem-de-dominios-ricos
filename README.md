@@ -1,5 +1,15 @@
 # Modelagem de Dominios Ricos
- DDD, CQRS, Event Sourcing
+
+DDD, CQRS, Event Sourcing
+
+### DDD
+// ...
+
+### CQRS
+// ...
+
+### Event Sourcing
+// ...
 
 ## Projeto NerdStore
 
@@ -12,6 +22,9 @@
 - Pagamentos
 - Vendas
 
+### UnitOfWork
+// ...
+
 ### Aggregate Root
 // ...
 
@@ -21,3 +34,6 @@
 ### Pacotes Utilizados
 /// ...
 
+
+## Créditos
+Projeto criado com base no curso Modelagem de Domínios Ricos, oferecido pela plataforma [Desenvolvedor.io](https://desenvolvedor.io/). 
