@@ -41,4 +41,3 @@ namespace NerdStore.Catalogo.Data.Mappings
         }
     }
 }
-}

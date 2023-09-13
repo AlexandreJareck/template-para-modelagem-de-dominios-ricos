@@ -21,7 +21,5 @@ namespace NerdStore.Catalogo.Data.Mappings
 
             builder.ToTable("Categorias");
         }
-
-        s
     }
 }
