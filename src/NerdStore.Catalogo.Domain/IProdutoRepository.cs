@@ -1,6 +1,8 @@
-﻿namespace NerdStore.Catalogo.Domain
+﻿using NerdStore.Core.Data;
+
+namespace NerdStore.Catalogo.Domain
 {
-    public interface IProdutoRepository
+    public interface IProdutoRepository : IRepository<Produto>
     {
         Task<IEnumerable<Produto>> ObterTodos();
 
