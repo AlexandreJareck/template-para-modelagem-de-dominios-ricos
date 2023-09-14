@@ -22,17 +22,16 @@ DDD, CQRS, Event Sourcing
 - Pagamentos
 - Vendas
 
-### UnitOfWork
-// ...
-
 ### Aggregate Root
-// ...
+- Produto
 
 ### Objetos de Valor
-// ...
+- Dimensoes
 
 ### Pacotes Utilizados
-/// ...
+- EntityFramework
+- AutoMapper
+- MediatR  
 
 
 ## Créditos
