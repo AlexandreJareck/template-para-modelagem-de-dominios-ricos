@@ -75,7 +75,8 @@ namespace NerdStore.Catalogo.Application.Services
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _produtoRepository?.Dispose();
+            _estoqueService?.Dispose();
         }
     }
 }
