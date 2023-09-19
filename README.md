@@ -24,6 +24,7 @@ DDD, CQRS, Event Sourcing
 
 ### Aggregate Root
 - Produto
+- Pedido
 
 ### Objetos de Valor
 - Dimensoes
@@ -31,7 +32,8 @@ DDD, CQRS, Event Sourcing
 ### Pacotes Utilizados
 - EntityFramework
 - AutoMapper
-- MediatR  
+- MediatR
+- Fluent Validation
 
 
 ## Créditos
