@@ -6,7 +6,8 @@ DDD, CQRS, Event Sourcing
 // ...
 
 ### CQRS
-// ...
+  Um padrão que separa as operações de leitura(query) e atualização(command).  
+  - Vendas
 
 ### Event Sourcing
 // ...
