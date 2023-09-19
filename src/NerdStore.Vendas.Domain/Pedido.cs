@@ -14,7 +14,7 @@ namespace NerdStore.Vendas.Domain
         public DateTime DataCadastro { get; private set; }
         public PedidoStatus PedidoStatus { get; private set; }
 
-        public Voucher Voucher { get; private set; }
+        public Voucher? Voucher { get; private set; }
 
         private readonly List<PedidoItem> _pedidoItems;
         public IReadOnlyCollection<PedidoItem> PedidoItems => _pedidoItems;
@@ -28,7 +28,10 @@ namespace NerdStore.Vendas.Domain
             _pedidoItems = new List<PedidoItem>();
         }
 
-        protected Pedido() => _pedidoItems = new List<PedidoItem>();
+        protected Pedido()
+        {
+            _pedidoItems = new List<PedidoItem>();
+        }
 
         public ValidationResult AplicarVoucher(Voucher voucher)
         {
@@ -87,6 +90,8 @@ namespace NerdStore.Vendas.Domain
             if (PedidoItemExistente(item))
             {
                 var itemExistente = _pedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
+                if (itemExistente is null) throw new DomainException("O item não pertence ao pedido");
+
                 itemExistente.AdicionarUnidades(item.Quantidade);
                 item = itemExistente;
 
@@ -104,7 +109,7 @@ namespace NerdStore.Vendas.Domain
             if (!item.EhValido()) return;
 
             var itemExistente = PedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
-            if (itemExistente == null) throw new DomainException("O item não pertence ao pedido");
+            if (itemExistente is null) throw new DomainException("O item não pertence ao pedido");
 
             _pedidoItems.Remove(itemExistente);
 
@@ -117,7 +122,7 @@ namespace NerdStore.Vendas.Domain
             item.AssociarPedido(Id);
 
             var itemExistente = PedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
-            if (itemExistente == null) throw new DomainException("O item não pertence ao pedido");
+            if (itemExistente is null) throw new DomainException("O item não pertence ao pedido");
 
             _pedidoItems.Remove(itemExistente);
             _pedidoItems.Add(item);
