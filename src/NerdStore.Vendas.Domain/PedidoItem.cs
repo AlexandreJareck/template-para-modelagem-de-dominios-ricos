@@ -28,24 +28,12 @@ namespace NerdStore.Vendas.Domain
             PedidoId = pedidoId;
         }
 
-        public decimal CalcularValor()
-        {
-            return Quantidade * ValorUnitario;
-        }
+        public decimal CalcularValor() => Quantidade * ValorUnitario;
 
-        internal void AdicionarUnidades(int unidades)
-        {
-            Quantidade += unidades;
-        }
+        internal void AdicionarUnidades(int unidades) => Quantidade += unidades;
 
-        internal void AtualizarUnidades(int unidades)
-        {
-            Quantidade = unidades;
-        }
+        internal void AtualizarUnidades(int unidades) => Quantidade = unidades;
 
-        public override bool EhValido()
-        {
-            return true;
-        }
+        public override bool EhValido() => true;
     }
 }
