@@ -12,13 +12,12 @@ namespace NerdStore.Vendas.Domain
         public decimal Desconto { get; private set; }
         public decimal ValorTotal { get; private set; }
         public DateTime DataCadastro { get; private set; }
-
         public PedidoStatus PedidoStatus { get; private set; }
+
+        public Voucher Voucher { get; private set; }
 
         private readonly List<PedidoItem> _pedidoItems;
         public IReadOnlyCollection<PedidoItem> PedidoItems => _pedidoItems;
-
-        public Voucher Voucher { get; private set; }
 
         public Pedido(Guid clienteId, bool voucherUtilizado, decimal desconto, decimal valorTotal)
         {
@@ -29,10 +28,7 @@ namespace NerdStore.Vendas.Domain
             _pedidoItems = new List<PedidoItem>();
         }
 
-        protected Pedido()
-        {
-            _pedidoItems = new List<PedidoItem>();
-        }
+        protected Pedido() => _pedidoItems = new List<PedidoItem>();
 
         public ValidationResult AplicarVoucher(Voucher voucher)
         {
@@ -80,10 +76,7 @@ namespace NerdStore.Vendas.Domain
             Desconto = desconto;
         }
 
-        public bool PedidoItemExistente(PedidoItem item)
-        {
-            return _pedidoItems.Any(p => p.ProdutoId == item.ProdutoId);
-        }
+        public bool PedidoItemExistente(PedidoItem item) => _pedidoItems.Any(p => p.ProdutoId == item.ProdutoId);
 
         public void AdicionarItem(PedidoItem item)
         {
@@ -111,8 +104,8 @@ namespace NerdStore.Vendas.Domain
             if (!item.EhValido()) return;
 
             var itemExistente = PedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
-
             if (itemExistente == null) throw new DomainException("O item não pertence ao pedido");
+
             _pedidoItems.Remove(itemExistente);
 
             CalcularValorPedido();
@@ -124,7 +117,6 @@ namespace NerdStore.Vendas.Domain
             item.AssociarPedido(Id);
 
             var itemExistente = PedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
-
             if (itemExistente == null) throw new DomainException("O item não pertence ao pedido");
 
             _pedidoItems.Remove(itemExistente);
@@ -139,34 +131,19 @@ namespace NerdStore.Vendas.Domain
             AtualizarItem(item);
         }
 
-        public void TornarRascunho()
-        {
-            PedidoStatus = PedidoStatus.Rascunho;
-        }
+        public void TornarRascunho() => PedidoStatus = PedidoStatus.Rascunho;
 
-        public void IniciarPedido()
-        {
-            PedidoStatus = PedidoStatus.Iniciado;
-        }
+        public void IniciarPedido() => PedidoStatus = PedidoStatus.Iniciado;
 
-        public void FinalizarPedido()
-        {
-            PedidoStatus = PedidoStatus.Pago;
-        }
+        public void FinalizarPedido() => PedidoStatus = PedidoStatus.Pago;
 
-        public void CancelarPedido()
-        {
-            PedidoStatus = PedidoStatus.Cancelado;
-        }
+        public void CancelarPedido() => PedidoStatus = PedidoStatus.Cancelado;
 
         public static class PedidoFactory
         {
             public static Pedido NovoPedidoRascunho(Guid clienteId)
             {
-                var pedido = new Pedido
-                {
-                    ClienteId = clienteId,
-                };
+                var pedido = new Pedido { ClienteId = clienteId, };
 
                 pedido.TornarRascunho();
                 return pedido;

@@ -18,7 +18,6 @@ namespace NerdStore.Vendas.Domain
         public bool Ativo { get; private set; }
         public bool Utilizado { get; private set; }
 
-        // EF Rel.
         public ICollection<Pedido> Pedidos { get; set; }
 
         internal ValidationResult ValidarSeAplicavel()
