@@ -6,7 +6,8 @@ DDD, CQRS, Event Sourcing
 // ...
 
 ### CQRS
-// ...
+  Um padrão que separa as operações de leitura(query) e atualização(command).  
+  - Vendas
 
 ### Event Sourcing
 // ...
@@ -24,6 +25,7 @@ DDD, CQRS, Event Sourcing
 
 ### Aggregate Root
 - Produto
+- Pedido
 
 ### Objetos de Valor
 - Dimensoes
@@ -31,7 +33,8 @@ DDD, CQRS, Event Sourcing
 ### Pacotes Utilizados
 - EntityFramework
 - AutoMapper
-- MediatR  
+- MediatR
+- Fluent Validation
 
 
 ## Créditos
