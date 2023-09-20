@@ -22,8 +22,8 @@ namespace NerdStore.Catalogo.Data.Repository
 
         public async Task<Produto> ObterPorId(Guid id)
         {
-            // as no tracking diminui os consumo de recursos do ef, ele desliga o tracking das consultas
-            return await _context.Produtos.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+            var produto = await _context.Produtos.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+            return produto;
         }
 
         public async Task<IEnumerable<Produto>> ObterPorCategoria(int codigo)
