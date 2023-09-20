@@ -1,12 +1,22 @@
-﻿namespace NerdStore.Core.DomainObject
+﻿using NerdStore.Core.Messages;
+
+namespace NerdStore.Core.DomainObject
 {
     public abstract class Entity
     {
         public Guid Id { get; set; }
+        private List<Event> _notificacoes;
+        public IReadOnlyCollection<Event> Notificacoes => _notificacoes?.AsReadOnly();
 
         protected Entity()
         {
             Id = Guid.NewGuid();
+        }
+
+        public void AdicionarEvento(Event evento)
+        {
+            _notificacoes = _notificacoes ?? new List<Event>();
+            _notificacoes.Add(evento);
         }
 
         public override bool Equals(object obj)
