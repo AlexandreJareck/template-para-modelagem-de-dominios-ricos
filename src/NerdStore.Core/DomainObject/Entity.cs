@@ -21,11 +21,8 @@
 
         public static bool operator ==(Entity a, Entity b)
         {
-            if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
-                return true;
-
-            if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
-                return false;
+            if (ReferenceEquals(a, null) && ReferenceEquals(b, null)) return true;
+            if (ReferenceEquals(a, null) || ReferenceEquals(b, null)) return false;
 
             return a.Equals(b);
         }
